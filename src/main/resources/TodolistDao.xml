@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.todolist_demo.dao.TodolistDao">
+
+    <insert id="createTodo" parameterType="String">
+        insert into todolist(status,content) values(0,#{content});
+    </insert>
+
+    <update id="updateContent" >
+        update todolist set content= #{1} where id = #{0};
+    </update>
+
+    <update id="updateStatus" parameterType="int">
+        update todolist set Status = 1 where id = #{id};
+    </update>
+
+    <select id="getTodolist" resultType="Todolist">
+        select * from todolist;
+    </select>
+
+    <delete id="deleteTodo" parameterType="int">
+        delete from todolist where id = #{id};
+    </delete>
+
+
+</mapper>
