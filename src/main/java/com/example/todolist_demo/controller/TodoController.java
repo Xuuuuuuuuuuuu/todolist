@@ -6,10 +6,7 @@ import com.example.todolist_demo.service.TodoService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,24 +19,34 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-    @GetMapping("/createtodolist/{content}")
-    public void create(String content){
+    @PostMapping("/createtodolist/{content}")
+    public void create(@PathVariable("content") String content){
         todoService.createTodo(content);
     }
-    @GetMapping("/updatecontent/{id}/{content}")
-    public void updatec(Integer id,String content){
+
+    @PutMapping("/updatecontent/{id}/{content}")
+    public void updatec(@PathVariable("id") Integer id,@PathVariable("content") String content){
         todoService.updateContent(id,content);
     }
-    @GetMapping("/updatestatus/{id}")
-    public void updates(Integer id){
+
+    @PutMapping("/updatestatus/{id}")
+    public void updates(@PathVariable("id") Integer id){
         todoService.updateStatus(id);
     }
+
     @GetMapping("/getalllist")
     public List<Todolist> get(){
         return todoService.getTodolist();
     }
-    @GetMapping("deletetodolist/{id}")
-    public void delete(Integer id){
+
+    @DeleteMapping("/deletetodolist/{id}")
+    public void delete(@PathVariable("id") Integer id){
         todoService.deleteTodo(id);
     }
+
+    @GetMapping("/findexist/{id}")
+    public int exist(@PathVariable("id") Integer id) {
+        return todoService.findIdExist(id);
+    }
+
 }

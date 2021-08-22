@@ -18,7 +18,9 @@ public interface TodolistDao{
 
     public List<Todolist> getTodolist();
 
-    public void deleteTodo(Integer id);
+    public int deleteTodo(Integer id);
+
+    public int findIdExist(Integer id);
 
     public void addPicture(Integer id, MultipartFile picture);
 

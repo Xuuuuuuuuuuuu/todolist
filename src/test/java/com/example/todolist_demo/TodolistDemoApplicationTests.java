@@ -18,9 +18,9 @@ class TodolistDemoApplicationTests {
 
     }
 
-    @Test
-    public void testGetlist(){
-        System.out.println(todoService.getTodolist());
-    }
+//    @Test
+//    public void testGetlist(){
+//        System.out.println(todoService.getTodolist());
+//    }
 
 }

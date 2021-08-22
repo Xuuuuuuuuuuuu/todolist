@@ -5,19 +5,19 @@
 
 <mapper namespace="com.example.todolist_demo.dao.TodolistDao">
 
-    <insert id="createTodo" parameterType="String">
+    <insert id="createTodo" parameterType="java.lang.String">
         insert into todolist(status,content) values(0,#{content});
     </insert>
 
     <update id="updateContent" >
-        update todolist set content= #{1} where id = #{0};
+        update todolist set content= #{param2} where id = #{param1};
     </update>
 
     <update id="updateStatus" parameterType="int">
         update todolist set Status = 1 where id = #{id};
     </update>
 
-    <select id="getTodolist" resultType="Todolist">
+    <select id="getTodolist" resultType="com.example.todolist_demo.entity.Todolist">
         select * from todolist;
     </select>
 
@@ -25,5 +25,8 @@
         delete from todolist where id = #{id};
     </delete>
 
+    <select id="findIdExist" parameterType="int" resultType="int">
+        select id from todolist where id = #{id};
+    </select>
 
 </mapper>

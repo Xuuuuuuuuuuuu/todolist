@@ -19,12 +19,14 @@ public class TodoServiceImp implements TodoService{
     private TodolistDao todolistDao;
     @Override
     public void createTodo(String content) {
-        if(content == ""){
-            System.out.println("请输入代办事项内容后再创建\n");
-        }else{
+        if(content != ""){
             todolistDao.createTodo(content);
             System.out.println("创建代办事项成功\n");
+
+        }else{
+            System.out.println("请输入内容后确定创建\n");
         }
+
     }
 
     @Override
@@ -44,11 +46,21 @@ public class TodoServiceImp implements TodoService{
 
     @Override
     public void deleteTodo(Integer id) {
-        todolistDao.deleteTodo(id);
+        int value = todolistDao.deleteTodo(id);
+        if(value == 0){
+            System.out.println("未找到指定id的待办事项，请确认后再次输入\n");
+        }else {
+            System.out.println("删除代办事项成功\n");
+        }
     }
 
     @Override
     public void addPicture(Integer id, MultipartFile picture) {
 
+    }
+
+    @Override
+    public int findIdExist(Integer id) {
+        return todolistDao.findIdExist(id);
     }
 }

@@ -16,5 +16,7 @@ public interface TodoService {
 
     public void deleteTodo(Integer id);
 
+    public int findIdExist(Integer id);
+
     public void addPicture(Integer id, MultipartFile picture);
 }
